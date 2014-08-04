@@ -1,0 +1,431 @@
+respawn = "BASE";
+respawnDelay = 25;
+respawnDialog = false;
+disabledAI = 0;
+
+author = "Darren 'Dabbo' Edmonds";
+onLoadName = "Combat Royale";
+onLoadMission = "Multiplayer Deathmatch, Hunt and Survive!";
+loadScreen = "LoadingImage.jpg";
+class Header
+{
+	gameType = DM;
+};
+
+class RscTitles
+{
+	class CrateStatusDialog
+	{    
+		idd = 200;
+		duration = 0.1;
+		fadein = 0;
+		fadeout = 0;
+		onLoad = "\
+			_control = ((_this select 0) displayCtrl 300);\
+		    if (crateTicker != -1) then {\
+				_control ctrlSetText (format['Crate Detonation: %1s', crateTicker]);\
+				if (crateTicker > 60) then {\
+					_control ctrlSetBackgroundColor [0, 1, 0, 0.2];\
+				} else {\
+					if (crateTicker > 30) then {\
+						_control ctrlSetBackgroundColor [1, 1, 0, 0.2];\
+					} else {\
+						_control ctrlSetBackgroundColor [1, 0, 0, 0.2];\
+					};\
+				};\
+			} else {\
+				_control ctrlSetBackgroundColor [0, 0, 0, 0.6];\
+				_control ctrlSetText ('Crates Deploying...');\
+			};\
+		";		
+		class controls
+		{
+			class ExampleControl
+			{    
+				idc = 300;
+				type = 0;
+				style = 2;
+				x = 0; 
+				y = safeZoneY + 0.05;
+				h = 0.05;
+				w = 0.4;
+				font = "EtelkaNarrowMediumPro";
+				sizeEx = 0.04;
+				colorBackground[] = {0, 0, 1, 0.2};
+				colorText[] = {1, 1, 1, 1};
+				text = "Crate Spawn";
+			};  
+		};	
+	};
+	class EndGameDialog
+	{    
+		idd = 208;
+		duration = 10;
+		fadein = 1;
+		fadeout = 1;
+		onLoad = "\
+			_control = ((_this select 0) displayCtrl 308);\
+			_control ctrlSetText (format['WARNING: %1 zones left to expire. Combat Royale match will end shortly.', zonesRemainUpdate]);\
+		";		
+		class controls
+		{
+			class control1
+			{    
+				idc = 308;
+				type = 0;
+				style = 2;
+				x = 0; 
+				y = safeZoneY + 0.11;
+				h = 0.05;
+				w = 1;
+				font = "EtelkaNarrowMediumPro";
+				sizeEx = 0.04;
+				colorBackground[] = {1, 0, 0, 1};
+				colorText[] = {1, 1, 0, 1};
+				text = "Combat Royale Match Will End!";
+			};  
+		};	
+	};
+	class ZoneStatusDialog
+	{    
+		idd = 201;
+		duration = 0.1;
+		fadein = 0;
+		fadeout = 0;
+		onLoad = "\
+			_control = ((_this select 0) displayCtrl 301);\
+			_control ctrlSetText (format['%1', ZoneDialogMessage]);\
+			_ZoneMessageColour = [0, 0, 1, 0.2];\
+			if (ZoneDialogAlert > 0) then {\
+				_ZoneMessageColour = [0, 1, 0, 0.2];\
+				if (ZoneDialogAlert > 89) then {\
+					_ZoneMessageColour = [1, 1, 0, 0.2];\
+					if (ZoneDialogAlert > 99) then {\
+						_ZoneMessageColour = [1, 0, 0, 1];\
+					};\
+				};\
+			};\
+			_control ctrlSetBackgroundColor _ZoneMessageColour;\
+		";		
+		class controls
+		{
+			class ExampleControl
+			{    
+				idc = 301;
+				type = 0;
+				style = 2;
+				x = 0.6; 
+				y = safeZoneY + 0.05;
+				h = 0.05;
+				w = 0.4;
+				font = "EtelkaNarrowMediumPro";
+				sizeEx = 0.04;
+				colorBackground[] = {0, 0, 1, 0.2};
+				colorText[] = {1, 1, 1, 1};
+				text = "Zone Status";
+			};  
+		};	
+	};
+	class PlayerScoreTitle
+	{    
+		idd = 207;
+		duration = 0.1;
+		fadein = 0;
+		fadeout = 0;
+		onLoad = "\
+		";		
+		class controls
+		{
+			class ExampleControl
+			{    
+				idc = 307;
+				type = 0;
+				style = 2;
+				x = safeZoneX + safeZoneW - 0.51; 
+				y = safeZoneY + safeZoneH - (0.045 * 7) - 0.01;
+				h = 0.04;
+				w = 0.5;
+				font = "EtelkaNarrowMediumPro";
+				sizeEx = 0.03;
+				colorBackground[] = {0, 0, 0, 0.2};
+				colorText[] = {1, 1, 1, 1};
+				text = "Combat Royale Top 5 Players";
+			};  
+		};	
+	};
+	class PlayerScore1Dialog
+	{    
+		idd = 202;
+		duration = 0.1;
+		fadein = 0;
+		fadeout = 0;
+		onLoad = "\
+			_control = ((_this select 0) displayCtrl 302);\
+			_control ctrlSetText (format['%1', Score1]);\
+		";		
+		class controls
+		{
+			class ExampleControl
+			{    
+				idc = 302;
+				type = 0;
+				style = 2;
+				x = safeZoneX + safeZoneW - 0.51; 
+				y = safeZoneY + safeZoneH - (0.045 * 6) - 0.01;
+				h = 0.04;
+				w = 0.5;
+				font = "EtelkaNarrowMediumPro";
+				sizeEx = 0.03;
+				colorBackground[] = {0, 0, 1, 0.2};
+				colorText[] = {1, 1, 1, 1};
+				text = "1st : Dabbo, 40 Kill(s)";
+			};  
+		};	
+	};
+	class PlayerScore2Dialog
+	{    
+		idd = 203;
+		duration = 0.1;
+		fadein = 0;
+		fadeout = 0;
+		onLoad = "\
+			_control = ((_this select 0) displayCtrl 303);\
+			_control ctrlSetText (format['%1', Score2]);\
+		";		
+		class controls
+		{
+			class ExampleControl
+			{    
+				idc = 303;
+				type = 0;
+				style = 2;
+				x = safeZoneX + safeZoneW - 0.51; 
+				y = safeZoneY + safeZoneH - (0.045 * 5) - 0.01;
+				h = 0.04;
+				w = 0.5;
+				font = "EtelkaNarrowMediumPro";
+				sizeEx = 0.03;
+				colorBackground[] = {0, 0, 1, 0.2};
+				colorText[] = {1, 1, 1, 1};
+				text = "2nd : Dabbo, 30 Kill(s)";
+			};  
+		};	
+	};
+	class PlayerScore3Dialog
+	{    
+		idd = 204;
+		duration = 0.1;
+		fadein = 0;
+		fadeout = 0;
+		onLoad = "\
+			_control = ((_this select 0) displayCtrl 304);\
+			_control ctrlSetText (format['%1', Score3]);\
+		";		
+		class controls
+		{
+			class ExampleControl
+			{    
+				idc = 304;
+				type = 0;
+				style = 2;
+				x = safeZoneX + safeZoneW - 0.51; 
+				y = safeZoneY + safeZoneH - (0.045 * 4) - 0.01;
+				h = 0.04;
+				w = 0.5;
+				font = "EtelkaNarrowMediumPro";
+				sizeEx = 0.03;
+				colorBackground[] = {0, 0, 1, 0.2};
+				colorText[] = {1, 1, 1, 1};
+				text = "3rd : Dabbo, 40 Kill(s)";
+			};  
+		};	
+	};
+	class PlayerScore4Dialog
+	{    
+		idd = 205;
+		duration = 0.1;
+		fadein = 0;
+		fadeout = 0;
+		onLoad = "\
+			_control = ((_this select 0) displayCtrl 305);\
+			_control ctrlSetText (format['%1', Score4]);\
+		";		
+		class controls
+		{
+			class ExampleControl
+			{    
+				idc = 305;
+				type = 0;
+				style = 2;
+				x = safeZoneX + safeZoneW - 0.51; 
+				y = safeZoneY + safeZoneH - (0.045 * 3) - 0.01;
+				h = 0.04;
+				w = 0.5;
+				font = "EtelkaNarrowMediumPro";
+				sizeEx = 0.03;
+				colorBackground[] = {0, 0, 1, 0.2};
+				colorText[] = {1, 1, 1, 1};
+				text = "4th : Dabbo, 40 Kill(s)";
+			};  
+		};	
+	};
+	class PlayerScore5Dialog
+	{    
+		idd = 206;
+		duration = 0.1;
+		fadein = 0;
+		fadeout = 0;
+		onLoad = "\
+			_control = ((_this select 0) displayCtrl 306);\
+			_control ctrlSetText (format['%1', Score5]);\
+		";		
+		class controls
+		{
+			class ExampleControl
+			{    
+				idc = 306;
+				type = 0;
+				style = 2;
+				x = safeZoneX + safeZoneW - 0.51; 
+				y = safeZoneY + safeZoneH - (0.045 * 2) - 0.01;
+				h = 0.04;
+				w = 0.5;
+				font = "EtelkaNarrowMediumPro";
+				sizeEx = 0.03;
+				colorBackground[] = {0, 0, 1, 0.2};
+				colorText[] = {1, 1, 1, 1};
+				text = "5th : Dabbo, 40 Kill(s)";
+			};  
+		};	
+	};
+	class PlayerScoreMainDialog
+	{    
+		idd = 209;
+		duration = 0.1;
+		fadein = 0;
+		fadeout = 0;
+		onLoad = "\
+			_control = ((_this select 0) displayCtrl 309);\
+			_control ctrlSetText (format['Your Score : %1, %2 Kill(s)', (name player), CombatPlayerScore]);\
+		";		
+		class controls
+		{
+			class ExampleControl
+			{    
+				idc = 309;
+				type = 0;
+				style = 2;
+				x = safeZoneX + safeZoneW - 0.51; 
+				y = safeZoneY + safeZoneH - 0.045 - 0.01;
+				h = 0.04;
+				w = 0.5;
+				font = "EtelkaNarrowMediumPro";
+				sizeEx = 0.03;
+				colorBackground[] = {1, 1, 1, 0.8};
+				colorText[] = {0, 0, 0, 1};
+				text = "5th : Dabbo, 40 Kill(s)";
+			};  
+		};	
+	};
+};
+
+
+class Params
+{
+	class ZoneSize
+	{
+		//paramsArray[0]
+		title = "Zone Area Size (Small=12 Zones, Medium=26 Zones, Large=41 Zones)";
+		values[] = {11,25,41};
+		texts[] = {"Small","Medium","Large"};
+		default = 41;
+	};
+	class ZoneLifespan
+	{
+		//paramsArray[1]
+		title = "Zone Lifespan (Short, Medium, Long, Maximum)";
+		values[] = {70,50,25,0};
+		texts[] = {"Short","Medium","Long","Maximum"};
+		default = 50;
+	};
+	class PlayerTrackInterval
+	{
+		//paramsArray[2]
+		title = "Player Tracker Update Interval";
+		values[] = {30, 45, 60, 90, 120, 240, 300, 480, 600};
+		texts[] = {"30 seconds", "45 seconds", "1 minute", "1 minute 30 seconds", "2 minutes", "4 minutes", "5 minutes", "8 minutes", "10 minutes"};
+		default = 240;
+	};
+	class CrateMarkerSize
+	{
+		//paramsArray[3]
+		title = "Crate Marker Size";
+		values[] = {25, 60, 125, 300};
+		texts[] = {"Small (25m)", "Medium (60m)", "Large (125m)", "Huge (300m)"};
+		default = 125;
+	};
+	class CrateSpawnInterval
+	{
+		//paramsArray[4]
+		title = "Crate Spawning Interval";
+		values[] = {60, 120, 240, 360, 480, 600};
+		texts[] = {"1 minute", "2 minutes", "4 minutes", "6 minutes", "8 minutes", "10 minutes"};
+		default = 480;
+	};
+	class ZoneArtillery
+	{
+		//paramsArray[5]
+		title = "Zone Artillery Enabled";
+		values[] = {1, 0};
+		texts[] = {"Enabled", "Disabled"};
+		default = 1;
+	};
+	class ZoneArtilleryInterval
+	{
+		//paramsArray[6]
+		title = "Zone Artillery Interval";
+		values[] = {1.5, 5, 15, 30};
+		texts[] = {"Insane", "Chaos", "Average", "Peaceful"};
+		default = 15;
+	};
+	class UseVehicles
+	{
+		//paramsArray[7]
+		title = "Allow Vehicles";
+		values[] = {0, 2, 5, 8, 12};
+		texts[] = {"No Vehicles", "2 Vehicles", "5 Vehicles", "8 Vehicles", "12 Vehicles"};
+		default = 12;
+	};
+	class ShieldCars
+	{
+		//paramsArray[8]
+		title = "Allow Vehicles to be Destroyed?";
+		values[] = {1, 0};
+		texts[] = {"Yes", "No"};
+		default = 0;
+	};
+	class VehiclePlacement
+	{
+		//paramsArray[9]
+		title = "Vehicle Starting Placement";
+		values[] = {0, 1};
+		texts[] = {"Map Defaults", "Random Placement"};
+		default = 1;
+	};
+	class AIEnablePlayers
+	{
+		//paramsArray[10]
+		title = "AI Players";
+		values[] = {0, 5, 10, 15, 20, 30, 40, 50};
+		texts[] = {"Disabled", "Enabled: 5 units", "Enabled: 10 units", "Enabled: 15 units", "Enabled: 20 units", "Enabled: 30 units", "Enabled: 40 units", "Enabled: 50 units"};
+		default = 20;
+	};
+	class StartingWeaponGroup
+	{
+		//paramsArray[11]
+		title = "Starting Weapon Group";
+		values[] = {5, 8, 20, 23, 27};
+		texts[] = {"Hand Guns(x5)", "+ SMGs (x3)", "+ Assault Rifles (x12)", "+ LMGs (x3)", "+ Sniper Rifles (x4)"};
+		default = 20;
+	};
+};
