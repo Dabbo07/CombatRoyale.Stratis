@@ -33,7 +33,7 @@ if (isDedicated || isServer) then {
 	specCrate addMagazineCargoGlobal ["200Rnd_65x39_cased_Box", 2];
 	specCrate addWeaponCargoGlobal ["LMG_Mk200_F", 1];
 
-	specCrate addWeaponCargoGlobal ["U_I_GhillieSuit", 2];
+	specCrate addItemCargoGlobal ["U_B_GhillieSuit", 2];
 	specCrate addBackpackCargoGlobal ["B_AssaultPack_Base", 2];
 
 	specCrate addMagazineCargoGlobal ["RPG32_F", 4];
@@ -142,11 +142,11 @@ if (isDedicated || isServer) then {
 		};
 		// 10% chance of Binoculars
 		if (floor(random 100) > 90) then {
-			_crate addWeaponCargoGlobal ["Binocular", 1];
+			_crate addItemCargoGlobal ["Binocular", 1];
 		};
 		// 2% chance of NVGoggles
 		if (floor(random 100) > 98) then {
-			_crate addWeaponCargoGlobal ["NVGoggles", 1];
+			_crate addItemCargoGlobal ["NVGoggles", 1];
 		};
 		// 15% chance of GPS
 		if (floor(random 100) > 85) then {

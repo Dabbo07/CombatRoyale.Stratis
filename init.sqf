@@ -2,12 +2,27 @@
 // - Overlay not showing bug - not found cause yet
 
 // Global Variables
-EAST setFriend [WEST, 0];
+EAST setFriend [WEST, 0];				// AI Units
 EAST setFriend [RESISTANCE, 0];
 EAST setFriend [CIVILIAN, 0];
 EAST setFriend [EAST, 0];
 
-VERSION = "v1.6.32";
+WEST setFriend [WEST, 0];				// Other / Observers
+WEST setFriend [RESISTANCE, 0];
+WEST setFriend [CIVILIAN, 0];
+WEST setFriend [EAST, 0];
+
+CIVILIAN setFriend [WEST, 0];			// Human players
+CIVILIAN setFriend [RESISTANCE, 0];
+CIVILIAN setFriend [CIVILIAN, 1];		// Set to 1 as needed to access crates. :/
+CIVILIAN setFriend [EAST, 0];
+
+RESISTANCE setFriend [WEST, 0];
+RESISTANCE setFriend [RESISTANCE, 0];
+RESISTANCE setFriend [CIVILIAN, 0];
+RESISTANCE setFriend [EAST, 0];
+
+VERSION = "v1.7.33";
 ZONELIMIT = (paramsArray select 0);
 ZONECREEP = (paramsArray select 1);
 TRACKINTERVAL = (paramsArray select 2);
@@ -148,58 +163,6 @@ obj_mags = [
 	"RPG32_HE_F"
 ];
 
-
-/*
-obj_guns = [
-	"hgun_ACPC2_F",
-	"hgun_P07_F",
-	"hgun_Pistol_heavy_01_F",
-	"hgun_Pistol_heavy_02_F",
-	"hgun_Rook40_F",
-	"hgun_PDW2000_F",
-	"SMG_01_F",
-	"SMG_02_F",
-	"arifle_Katiba_F",
-	"arifle_Mk20_F",
-	"arifle_MX_F",
-	"arifle_SDAR_F",
-	"arifle_TRG20_F",
-	"arifle_TRG21_F",
-	"arifle_MXC_F",
-	"arifle_MXM_F",
-	"LMG_Zafir_F",
-	"LMG_Mk200_F",
-	"srifle_DMR_01_F",
-	"srifle_EBR_F",
-	"srifle_GM6_F",
-	"srifle_LRR_F"
-];
-obj_mags = [
-	"9Rnd_45ACP_Mag",
-	"16Rnd_9x21_Mag",
-	"11Rnd_45ACP_Mag",
-	"6Rnd_45ACP_Cylinder",
-	"16Rnd_9x21_Mag",
-	"30Rnd_9x21_Mag",
-	"30Rnd_45ACP_Mag_SMG_01",
-	"30Rnd_9x21_Mag",
-	"30Rnd_65x39_caseless_green",
-	"30Rnd_556x45_Stanag",
-	"30Rnd_65x39_caseless_mag",
-	"20Rnd_556x45_UW_mag",
-	"30Rnd_556x45_Stanag",
-	"30Rnd_556x45_Stanag",
-	"30Rnd_65x39_caseless_mag",
-	"30Rnd_65x39_caseless_mag",
-	"150Rnd_762x51_Box_Tracer",
-	"200Rnd_65x39_cased_Box_Tracer",
-	"10Rnd_762x51_Mag",
-	"20Rnd_762x51_Mag",
-	"5Rnd_127x108_Mag",
-	"7Rnd_408_Mag"
-];
-*/
-
 obj_backpacks = [ 
 	"B_AssaultPack_Base",
 	"B_AssaultPack_blk",
@@ -268,65 +231,11 @@ obj_items = [
 	"U_B_CombatUniform_mcam_tshirt",
 	"U_B_CombatUniform_mcam_vest",
 	"U_B_CombatUniform_mcam_worn",
-	"U_B_CombatUniform_sgg",
-	"U_B_CombatUniform_sgg_tshirt",
-	"U_B_CombatUniform_sgg_vest",
-	"U_B_CombatUniform_wdl",
-	"U_B_CombatUniform_wdl_tshirt",
-	"U_B_CombatUniform_wdl_vest",
-	"U_I_GhillieSuit",
+	"U_B_GhillieSuit",
 	"U_B_HeliPilotCoveralls",
 	"U_B_PilotCoveralls",
 	"U_B_SpecopsUniform_sgg",
 	"U_B_Wetsuit",
-	"U_C_Commoner1_1",
-	"U_C_Commoner1_2",
-	"U_C_Commoner1_3",
-	"U_C_Commoner2_1",
-	"U_C_Commoner2_2",
-	"U_C_Commoner2_3",
-	"U_C_Farmer",
-	"U_C_Fisherman",
-	"U_C_FishermanOveralls",
-	"U_C_HunterBody_brn",
-	"U_C_HunterBody_grn",
-	"U_C_Novak",
-	"U_C_Poloshirt_blue",
-	"U_C_Poloshirt_burgundy",
-	"U_C_Poloshirt_redwhite",
-	"U_C_Poloshirt_salmon",
-	"U_C_Poloshirt_stripped",
-	"U_C_Poloshirt_tricolour",
-	"U_C_Poloshirt_burgundy",
-	"U_C_Poor_1",
-	"U_C_Poor_2",
-	"U_C_Poor_shorts_1",
-	"U_C_Poor_shorts_2",
-	"U_C_PriestBody",
-	"U_C_Scavenger_1",
-	"U_C_Scavenger_2",
-	"U_C_ShirtSurfer_shorts",
-	"U_C_TeeSurfer_shorts_1",
-	"U_C_TeeSurfer_shorts_2",
-	"U_C_WorkerCoveralls",
-	"U_C_WorkerOveralls",
-	"U_I_CombatUniform",
-	"U_I_CombatUniform_shortsleeve",
-	"U_I_CombatUniform_tshirt",
-	"U_I_GhillieSuit",
-	"U_I_HeliPilotCoveralls",
-	"U_I_OfficerUniform",
-	"U_I_PilotCoveralls",
-	"U_I_Wetsuit",
-	"U_I_PilotCoveralls",
-	"U_O_CombatUniform_ocamo",
-	"U_O_CombatUniform_oucamo",
-	"U_O_GhillieSuit",
-	"U_O_OfficerUniform_ocamo",
-	"U_O_PilotCoveralls",
-	"U_O_SpecopsUniform_blk",
-	"U_O_SpecopsUniform_ocamo",
-	"U_O_Wetsuit",
 	"V_BandollierB_blk",
 	"V_BandollierB_cbr",
 	"V_BandollierB_oli",

@@ -14,8 +14,6 @@ if (isDedicated || isServer) then {
 		_unit = _this select 0;
 		_sel = _this select 1;
 		
-		EAST setFriend [EAST, 0];
-		
 		_cnt = createCenter EAST;
 		_grp = createGroup EAST;
 		_newUnit = _grp createUnit ["C_man_1_3_F", (getmarkerpos "respawn_civilian"),[],20,"FORM"];
