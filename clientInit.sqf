@@ -60,6 +60,7 @@
 	resetPlayerStart = {
 		private ["_unit"];
 		_unit = _this;
+		_unit enableFatigue false;
 		removeAllWeapons _unit;
 		_unit addBackpack "B_Parachute";
 		_rg = floor(random STARTGUN);

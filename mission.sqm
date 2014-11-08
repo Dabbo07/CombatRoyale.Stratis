@@ -29,7 +29,6 @@ class Mission
 		"A3_Characters_F_OPFOR",
 		"A3_Weapons_F_Ammoboxes",
 		"A3_Soft_F_Quadbike",
-		"a3_soft_f_beta_quadbike",
 		"A3_Soft_F_Car",
 		"A3_Soft_F_Offroad_01",
 		"A3_Soft_F_SUV",
@@ -39,7 +38,7 @@ class Mission
 	randomSeed=2887125;
 	class Intel
 	{
-		briefingName="Combat Royale on Stratis v1.7.33";
+		briefingName="Combat Royale on Stratis v1.7.34";
 		overviewText="Multiplayer Deathmatch Survival Scenario; Find Weapons, Hunt other players, Survive!";
 		resistanceWest=0;
 		startWeather=0.29999998;
