@@ -38,7 +38,7 @@ class Mission
 	randomSeed=2887125;
 	class Intel
 	{
-		briefingName="Combat Royale on Stratis v1.7.34";
+		briefingName="Combat Royale on Stratis v1.8.35";
 		overviewText="Multiplayer Deathmatch Survival Scenario; Find Weapons, Hunt other players, Survive!";
 		resistanceWest=0;
 		startWeather=0.29999998;
@@ -3054,7 +3054,7 @@ class Mission
 			name="zone07";
 			markerType="RECTANGLE";
 			type="Empty";
-			colorName="ColorBLUFOR";
+			colorName="ColorBlue";
 			fillName="SolidBorder";
 			a=400;
 			b=400;

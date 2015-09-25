@@ -22,7 +22,7 @@ RESISTANCE setFriend [RESISTANCE, 0];
 RESISTANCE setFriend [CIVILIAN, 0];
 RESISTANCE setFriend [EAST, 0];
 
-VERSION = "v1.7.34";
+VERSION = "v1.8.35";
 ZONELIMIT = (paramsArray select 0);
 ZONECREEP = (paramsArray select 1);
 TRACKINTERVAL = (paramsArray select 2);
